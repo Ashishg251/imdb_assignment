@@ -1,0 +1,69 @@
+WorkFlow of the code:
+1. In the main file imdb.html I have used bootstrap for doing the UI part.
+2. In the javasccript file imdb_actor_1.js I used jQuery. In the below method I used a third party API of IMDB for getting the information about the 			actor/actress. Using the API I extracted the Filmography for that actor.
+		function searchActor()
+		{
+		  var actor=movieActor.val();
+		  $('#loading').show();
+		  tbody.empty();
+
+		  $.ajax({
+			url:"http://www.myapifilms.com/imdb?name="+actor+"&format=JSONP&language=en-us&filmography=1&exactFilter=0&limit=1&bornDied=0&starSign=0&uniqueName=0&actorActress=0&actorTrivia=0&actorPhotos=0&actorVideos=0&salary=0&spouses=0&tradeMark=0&personalQuotes=0&starMeter=0",
+			dataType:"jsonp",
+			success: renderActorsWithTemplate
+		  });
+
+		}
+3. In the below function using the Filmography I got the IMDB Movie Id, which I have used for calling another API. 
+		function searchActor()
+		{
+		  var actor=movieActor.val();
+		  $('#loading').show();
+		  tbody.empty();
+
+		  $.ajax({
+			url:"http://www.myapifilms.com/imdb?name="+actor+"&format=JSONP&language=en-us&filmography=1&exactFilter=0&limit=1&bornDied=0&starSign=0&uniqueName=0&actorActress=0&actorTrivia=0&actorPhotos=0&actorVideos=0&salary=0&spouses=0&tradeMark=0&personalQuotes=0&starMeter=0",
+			dataType:"jsonp",
+			success: renderActorsWithTemplate
+		  });
+
+		}
+4. The below function is called by the above mentioned function. In the below method I have collected all the data movies done by the given actor/actresses and then I have sorted the movies according to their rating and showed the top 3 highly rated movies.
+I also created the logic for ccollecting maximum 15 movies from the filmography of that actor and then apply the sort function accordingly.
+		function ajaxCall(movieImdbId)
+		{
+			$.ajax({
+				url:"http://www.myapifilms.com/imdb?idIMDB="+movieImdbId+"&format=JSONP&language=en-us&aka=0&business=0&seasons=0&seasonYear=0&technical=0&trailer=0&movieTrivia=0&awards=0&moviePhotos=0&movieVideos=0&actors=0&biography=0&uniqueName=0&filmography=0&bornAndDead=0&starSign=0&actorActress=0&actorTrivia=0&similarMovies=0&originalTitle=0",
+				dataType:"jsonp",
+				success: function (movieId) {
+					moviesIds.push(movieId)
+					console.log(movieId);
+					successCounter++;
+					if(successCounter===15 || successCounter>=counter)
+					{
+						moviesIds.sort(function(a,b){
+							return b.rating-a.rating;
+						});
+						moviesIds.splice(3,moviesIds.length);
+						for(var i in moviesIds)
+						{
+							var title=moviesIds[i].title;
+							var plot=moviesIds[i].plot;
+							var posterUrl=moviesIds[i].urlPoster;
+							var imdbUrl=moviesIds[i].urlIMDB;
+							var about={};
+							......
+							
+							release_date = moviesIds[i].releaseDate;
+							about["ReleaseDate"]=release_date.substring(0,4)+"-"+release_date.substring(4,6)+"-"+release_date.substring(6,8);
+
+							var tr=template.clone();
+
+							tr.find(".link")
+							.........
+						}
+					}
+				}
+			});
+			return 1;
+		}

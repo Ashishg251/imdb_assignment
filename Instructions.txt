@@ -1,0 +1,12 @@
+I have completed the 2nd assignment IMDB Search App.
+I have completed this assignment using jQuery, HTML, CSS and Bootstrap.
+I have used third APIs of IMDB i.e., from this website "http://www.myapifilms.com/".
+My Folder is as follows:
+		1. imdb.html : Main HTML file.
+		2. imdb_style.css : CSS file inside css folder.
+		3. imdb_actor_1.js : JavaScript file inside js folder.
+		4. keystone-load.gif : one GF image inside images folder.
+For running the project.
+		1. Double -click on imdb.html and run it locally.
+		2. In the given Search Box in the html file type the name of the actors/actresses and in the below given table you will get the name of the movies of that actor/actresses along with details.
+Note: In the imdb.html some dummy text is given in the table. Please ignore that.

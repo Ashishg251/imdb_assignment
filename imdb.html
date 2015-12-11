@@ -3,38 +3,56 @@
   <meta charset="utf-8">
   <title>IMBD Search</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
-  <script src="imdb.js"></script>
+  <link rel="stylesheet" href="css/imdb_style.css">
 </head>
 <body>
+
+  <div id="loading" style="display:none">
+    <img id="loading-image"  src="images/keystone-load.gif" alt="Loading..." />
+  </div>
+
   <div class="container">
     <h1>IMDB Search</h1>
-
-    <a href="http://www.myapifilms.com/imdb?title=titanic&format=JSONP&aka=0&business=0&seasons=0&seasonYear=0&technical=0&filter=N&exactFilter=0&limit=3&forceYear=0&lang=en-us&actors=N&biography=0&trailer=0&uniqueName=0&filmography=0&bornDied=0&starSign=0&actorActress=0&actorTrivia=0&movieTrivia=0&awards=0&moviePhotos=N&movieVideos=N&similarMovies=0&adultSearch=0">Search Titanic</a>
-
-    <input type="text" class="form-control" id="movieTitle" placeholder="terminator">
-
-    <button class="btn btn-primary btn-block" id="searchMovie">Search Movie</button>
+    <div class="row">
+      <div class="col-sm-10">
+        <input type="text" class="form-control" id="movieActor" placeholder="Varun Dhawan">
+      </div>
+      <div class="col-sm-2">
+        <button class="btn btn-primary btn-block" id="searchActor">Search Actor</button>
+      </div>
+    </div>
 
     <h2>Results</h2>
 
-    <table class="table table-striped" id="results">
+    <table class="table table-striped table-bordered" id="results">
       <thead>
         <tr>
-          <th>Title</th>
-          <th>Plot</th>
-          <th>Poster</th>
+          <th class="tableHeaders">Title</th>
+          <th class="tableHeaders">Plot</th>
+          <th class="tableHeaders">About</th>
+          <th class="tableHeaders">Poster</th>
         </tr>
       </thead>
       <tbody id="container">
         <tr id="template">
-          <td><a href="#" class="link">Avatar</a></td>
-          <td class="plot">I love blue folks.Dancing with wolves, but on other planet</td>
+          <td><a href="#" target="_blank" class="link">Avatar</a></td>
+          <td class="plot">I love blue folks.Dancing with wolves</td>
+          <td class=aboutMovie>
+            <ul class="list-group">
+              <li class="Duration list-group-item">Duration</li>
+              <li class="Rating list-group-item">Rating</li>
+              <li class="ReleaseDate list-group-item">Release Date</li>
+              <li class="Genres list-group-item">Genres</li>
+            </ul>
+          </td>
           <td><img alt="Image Poster" class="poster"></td>
         </tr>
       </tbody>
     </table>
 
   </div>
+
+  <script src="https://code.jquery.com/jquery-1.11.3.min.js"></script>
+  <script src="js/imdb_actor_1.js"></script>
 </body>
 </html>
